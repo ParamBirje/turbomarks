@@ -22,7 +22,7 @@ body > p {
 
 /* Form body */
 #form-part {
-    margin-top: 5px;
+    margin-top: 15px;
 
     display: flex;
     flex-direction: column;
@@ -46,11 +46,16 @@ input:focus {
 #store-button {
     margin-top: 7px;
     padding: 7px 10px;
-    font-weight: 800;
     background: #f0f0f0;
     border: none;
     cursor: pointer;
     border-radius: 2px;
+
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-family: "Montserrat", sans-serif;
+    font-size: 0.7rem;
+    font-weight: 600;
 
     transition: background 0.2s;
 }
