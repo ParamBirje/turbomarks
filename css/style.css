@@ -1,0 +1,57 @@
+body {
+    width: 350px;
+    font-family: "Montserrat", sans-serif;
+    padding: 10px 15px;
+    box-sizing: border-box;
+
+    background-color: #101010;
+    color: #f0f0f0;
+}
+
+/* Title/Logo */
+h1 {
+    line-height: 2px;
+}
+
+/* Subtitle */
+body > p {
+}
+
+/* Form body */
+#form-part {
+    margin-top: 5px;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+/* Shorthand and URL inputs */
+input {
+    padding: 5px 10px;
+    background: #202020;
+    border: none;
+    color: white;
+    border-radius: 2px;
+}
+
+input:focus {
+    outline: none;
+}
+
+/* Store button to save shorthand and URL */
+#store-button {
+    margin-top: 7px;
+    padding: 6px 10px;
+    font-weight: 800;
+    background: #f0f0f0;
+    border: none;
+    cursor: pointer;
+    border-radius: 2px;
+
+    transition: background 0.2s;
+}
+
+#store-button:hover {
+    background: #d0d0d0;
+}
