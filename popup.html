@@ -17,14 +17,23 @@
         <h1>Turbomarks</h1>
         <p>A better way to access regular links without touching your mouse.</p>
 
-        <div id="form-part">
-            <input type="text" id="shorthand" placeholder="Enter a shorthand" />
+        <form id="form-part">
+            <input
+                type="text"
+                name="shorthand"
+                id="shorthand"
+                placeholder="Enter a shorthand"
+            />
             <input
                 type="url"
+                name="url"
                 id="url"
                 placeholder="Enter the URL you want to map"
             />
             <button id="store-button" type="submit">Store</button>
-        </>
+        </form>
+
+        <!-- Scripts -->
+        <script src="scripts/main.js"></script>
     </body>
 </html>
