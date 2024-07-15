@@ -13,6 +13,13 @@ form.addEventListener("submit", (event) => {
     data[key] = value;
   }
 
+  // Condition:
+  // If any form field is empty, return
+  if (!data.title || !data.url) {
+    // show error message
+    return;
+  }
+
   // append the data to the list in local storage
   // if the list is not present, create a new list
   let existingData = localStorage.getItem("turbomarks-data");
@@ -21,6 +28,8 @@ form.addEventListener("submit", (event) => {
   } else {
     existingData = [];
   }
+
   existingData.push(data);
   localStorage.setItem("turbomarks-data", JSON.stringify(existingData));
+  // show success message
 });
