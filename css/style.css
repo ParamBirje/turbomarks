@@ -15,6 +15,9 @@ h1 {
 
 /* Subtitle */
 body > p {
+    font-size: 0.8rem;
+    width: 80%;
+    color: #b0b0b0;
 }
 
 /* Form body */
@@ -28,7 +31,7 @@ body > p {
 
 /* Shorthand and URL inputs */
 input {
-    padding: 5px 10px;
+    padding: 8px 10px;
     background: #202020;
     border: none;
     color: white;
@@ -42,7 +45,7 @@ input:focus {
 /* Store button to save shorthand and URL */
 #store-button {
     margin-top: 7px;
-    padding: 6px 10px;
+    padding: 7px 10px;
     font-weight: 800;
     background: #f0f0f0;
     border: none;
