@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "version": "0.0.1",
+  "name": "BetterBM",
+  "action": {
+    "default_popup": "index.html",
+    "default_icon": "icon.png"
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "128": "icon.png"
+  },
+  "permissions": ["scripting", "activeTab"],
+  "omnibox": {
+    "keyword": ":"
+  }
+}
