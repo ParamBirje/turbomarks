@@ -1,3 +1,5 @@
+const LOCAL_STORAGE_KEY = "turbomarks-data";
+
 let form = document.querySelector("#form-part");
 
 // Description:
@@ -15,14 +17,14 @@ form.addEventListener("submit", (event) => {
 
   // Condition:
   // If any form field is empty, return
-  if (!data.title || !data.url) {
+  if (!data.shorthand || !data.url) {
     // show error message
     return;
   }
 
   // append the data to the list in local storage
   // if the list is not present, create a new list
-  let existingData = localStorage.getItem("turbomarks-data");
+  let existingData = localStorage.getItem(LOCAL_STORAGE_KEY);
   if (existingData) {
     existingData = JSON.parse(existingData);
   } else {
@@ -30,6 +32,16 @@ form.addEventListener("submit", (event) => {
   }
 
   existingData.push(data);
-  localStorage.setItem("turbomarks-data", JSON.stringify(existingData));
+  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(existingData));
+  sendUpdateToBackgroundWorker(JSON.stringify(existingData));
   // show success message
 });
+
+// Description:
+// Sends a message to the background service
+// to update the data
+function sendUpdateToBackgroundWorker(turbomarksData) {
+  chrome.runtime.sendMessage({ data: turbomarksData }, (response) => {
+    console.log(response.message);
+  });
+}
