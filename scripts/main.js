@@ -41,3 +41,42 @@ form.addEventListener("submit", async (event) => {
 
   // show success message
 });
+
+//
+// Description:
+// Populating links-list with saved links
+// from chrome.storage.local
+let linksContainer = document.querySelector("#links-list");
+
+window.addEventListener("load", async () => {
+  let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
+  let existingData = [];
+
+  // Condition:
+  // Checking if the data is an empty object
+  if (resultData[LOCAL_STORAGE_KEY]) {
+    existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
+  }
+
+  existingData.forEach((item) => {
+    linksContainer.innerHTML += generateLinkItem(item);
+  });
+});
+
+// Function to generate link-item HTML
+function generateLinkItem(linkItem) {
+  return `
+    <div class="link-item">
+      <div class="link-item-data">
+        <span class="shorthand">: ${linkItem.shorthand}</span>
+        <a href="${linkItem.url}" target="_blank">${linkItem.url.substring(
+    0,
+    28
+  )}...</a>
+      </div>
+      <button data-shorthand="${
+        linkItem.shorthand
+      }" class="delete-button">Delete</button>
+    </div>
+  `;
+}
