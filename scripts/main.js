@@ -1,10 +1,19 @@
 const LOCAL_STORAGE_KEY = "turbomarks-data";
 
-let form = document.querySelector("#form-part");
+// Description:
+// Populating links-list with saved links
+// from chrome.storage.local
+let linksContainer = document.querySelector("#links-list");
+
+window.addEventListener("load", async () => {
+  await triggerRenderLinks();
+});
 
 // Description:
 // This script is responsible for handling the form submission
 // and storing the data in the local storage.
+let form = document.querySelector("#form-part");
+
 form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
@@ -39,16 +48,24 @@ form.addEventListener("submit", async (event) => {
     [LOCAL_STORAGE_KEY]: JSON.stringify(existingData),
   });
 
-  // show success message
+  // re-render the links-list
+  await triggerRenderLinks();
 });
 
-//
-// Description:
-// Populating links-list with saved links
-// from chrome.storage.local
-let linksContainer = document.querySelector("#links-list");
+/*
 
-window.addEventListener("load", async () => {
+  -------------------- Helper functions ----------------------
+
+*/
+
+// Helper function to re-render the links-list
+async function triggerRenderLinks() {
+  await renderLinksListItems();
+  await intializeDeleteButtons();
+}
+
+// Helper function to render the links-list items
+async function renderLinksListItems() {
   let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
   let existingData = [];
 
@@ -58,12 +75,15 @@ window.addEventListener("load", async () => {
     existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
   }
 
+  // flushing the existing links
+  linksContainer.innerHTML = "";
+  // Dangerous.
   existingData.forEach((item) => {
     linksContainer.innerHTML += generateLinkItem(item);
   });
-});
+}
 
-// Function to generate link-item HTML
+// Helper function to generate link-item HTML
 function generateLinkItem(linkItem) {
   return `
     <div class="link-item">
@@ -79,4 +99,41 @@ function generateLinkItem(linkItem) {
       }" class="delete-button">Delete</button>
     </div>
   `;
+}
+
+// Helper function for deleting a link-item from the list
+// and from chrome.storage.local
+async function intializeDeleteButtons() {
+  let deleteButtons = document.querySelectorAll(".delete-button");
+
+  deleteButtons.forEach((button) => {
+    // return if the button already has the click event listener
+    if (button.getAttribute("data-click-event")) {
+      return;
+    }
+
+    button.addEventListener("click", async (event) => {
+      let shorthand = event.target.getAttribute("data-shorthand");
+
+      let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
+      let existingData = [];
+
+      // Condition:
+      // Checking if the data is an empty object
+      if (resultData[LOCAL_STORAGE_KEY]) {
+        existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
+      }
+
+      existingData = existingData.filter(
+        (item) => item.shorthand !== shorthand
+      );
+
+      await chrome.storage.local.set({
+        [LOCAL_STORAGE_KEY]: JSON.stringify(existingData),
+      });
+
+      // remove the link-item from the list
+      event.target.parentElement.remove();
+    });
+  });
 }
