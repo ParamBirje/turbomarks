@@ -48,6 +48,7 @@ chrome.omnibox.onInputEntered.addListener((text) => {
   // });
 
   // Assuming the updated data is already present in turbomarksData
+  // that is fetched by the onInputChanged listener
   for (let i of turbomarksData) {
     if (i.shorthand === text) {
       chrome.tabs.update({ url: i.url });

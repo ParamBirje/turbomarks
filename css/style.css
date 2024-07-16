@@ -1,65 +1,113 @@
 body {
-    width: 350px;
-    font-family: "Montserrat", sans-serif;
-    padding: 10px 15px;
-    box-sizing: border-box;
+  width: 350px;
+  font-family: "Montserrat", sans-serif;
+  padding: 10px 15px;
+  box-sizing: border-box;
 
-    background-color: #101010;
-    color: #f0f0f0;
+  background-color: #101010;
+  color: #f0f0f0;
 }
 
 /* Title/Logo */
 h1 {
-    line-height: 2px;
+  line-height: 2px;
 }
 
 /* Subtitle */
 body > p {
-    font-size: 0.8rem;
-    width: 80%;
-    color: #b0b0b0;
+  font-size: 0.8rem;
+  width: 80%;
+  color: #b0b0b0;
 }
 
 /* Form body */
 #form-part {
-    margin-top: 15px;
+  margin-top: 15px;
 
-    display: flex;
-    flex-direction: column;
-    gap: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
 }
 
 /* Shorthand and URL inputs */
 input {
-    padding: 8px 10px;
-    background: #202020;
-    border: none;
-    color: white;
-    border-radius: 2px;
+  padding: 8px 10px;
+  background: #202020;
+  border: none;
+  color: white;
+  border-radius: 2px;
 }
 
 input:focus {
-    outline: none;
+  outline: none;
 }
 
 /* Store button to save shorthand and URL */
 #store-button {
-    margin-top: 7px;
-    padding: 7px 10px;
-    background: #f0f0f0;
-    border: none;
-    cursor: pointer;
-    border-radius: 2px;
+  margin-top: 7px;
+  padding: 7px 10px;
+  background: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  border-radius: 2px;
 
-    letter-spacing: 0.5px;
-    text-transform: uppercase;
-    font-family: "Montserrat", sans-serif;
-    font-size: 0.7rem;
-    font-weight: 600;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
 
-    transition: background 0.2s;
+  transition: background 0.2s;
 }
 
 #store-button:hover {
-    background: #d0d0d0;
+  background: #d0d0d0;
+}
+
+/* Saved links container */
+#links-container {
+  margin-top: 15px;
+  max-height: 250px;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+#links-container h3 {
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.link-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 10px;
+  border-bottom: 1px solid #303030;
+  border-radius: 2px;
+}
+
+.link-item-data {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.link-item a {
+  color: #f0f0f0;
+}
+
+.delete-button {
+  border: 1px solid rgb(253, 79, 79);
+  background-color: transparent;
+  cursor: pointer;
+  border-radius: 2px;
+  padding: 5px 10px;
+
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: rgb(253, 79, 79);
 }
