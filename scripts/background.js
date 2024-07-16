@@ -41,6 +41,17 @@ chrome.omnibox.onInputChanged.addListener(async (text, suggest) => {
 
 // On pressing enter, open the matched URL
 chrome.omnibox.onInputEntered.addListener((text) => {
-  let newURL = "https://www.google.com";
-  chrome.tabs.update({ url: newURL });
+  // chrome.storage.local.get(LOCAL_STORAGE_KEY).then((data) => {
+  //   if (data[LOCAL_STORAGE_KEY]) {
+  //     turbomarksData = JSON.parse(data[LOCAL_STORAGE_KEY]);
+  //   }
+  // });
+
+  // Assuming the updated data is already present in turbomarksData
+  for (let i of turbomarksData) {
+    if (i.shorthand === text) {
+      chrome.tabs.update({ url: i.url });
+      return;
+    }
+  }
 });
