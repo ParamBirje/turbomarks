@@ -12,7 +12,7 @@
   "icons": {
     "128": "icon.png"
   },
-  "permissions": ["scripting", "activeTab"],
+  "permissions": ["scripting", "activeTab", "storage"],
   "omnibox": {
     "keyword": ":"
   }

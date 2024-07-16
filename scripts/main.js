@@ -5,7 +5,7 @@ let form = document.querySelector("#form-part");
 // Description:
 // This script is responsible for handling the form submission
 // and storing the data in the local storage.
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   // structuring the form data
@@ -24,24 +24,20 @@ form.addEventListener("submit", (event) => {
 
   // append the data to the list in local storage
   // if the list is not present, create a new list
-  let existingData = localStorage.getItem(LOCAL_STORAGE_KEY);
-  if (existingData) {
-    existingData = JSON.parse(existingData);
-  } else {
-    existingData = [];
+  let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
+  let existingData = [];
+
+  // Condition:
+  // Checking if the data is an empty object
+  if (resultData[LOCAL_STORAGE_KEY]) {
+    existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
   }
 
   existingData.push(data);
-  localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(existingData));
-  sendUpdateToBackgroundWorker(JSON.stringify(existingData));
+
+  await chrome.storage.local.set({
+    [LOCAL_STORAGE_KEY]: JSON.stringify(existingData),
+  });
+
   // show success message
 });
-
-// Description:
-// Sends a message to the background service
-// to update the data
-function sendUpdateToBackgroundWorker(turbomarksData) {
-  chrome.runtime.sendMessage({ data: turbomarksData }, (response) => {
-    console.log(response.message);
-  });
-}

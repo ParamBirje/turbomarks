@@ -1,3 +1,4 @@
+const LOCAL_STORAGE_KEY = "turbomarks-data";
 let turbomarksData = [];
 
 // Listening to messages for updating the turbomarksData
@@ -9,7 +10,13 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 });
 
 // As the input changes, provide suggestions
-chrome.omnibox.onInputChanged.addListener((text, suggest) => {
+chrome.omnibox.onInputChanged.addListener(async (text, suggest) => {
+  chrome.storage.local.get(LOCAL_STORAGE_KEY).then((data) => {
+    if (data[LOCAL_STORAGE_KEY]) {
+      turbomarksData = JSON.parse(data[LOCAL_STORAGE_KEY]);
+    }
+  });
+
   let suggestions = [];
 
   // Loop to iterate over the turbomarksData list
