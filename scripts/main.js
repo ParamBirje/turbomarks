@@ -50,6 +50,9 @@ form.addEventListener("submit", async (event) => {
 
   // re-render the links-list
   await triggerRenderLinks();
+
+  // reset the form
+  form.reset();
 });
 
 /*
