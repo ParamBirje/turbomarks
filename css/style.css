@@ -94,6 +94,10 @@ input:focus {
   gap: 3px;
 }
 
+.shorthand {
+  color: yellow;
+}
+
 .link-item a {
   color: #f0f0f0;
 }

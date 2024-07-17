@@ -91,7 +91,7 @@ function generateLinkItem(linkItem) {
   return `
     <div class="link-item">
       <div class="link-item-data">
-        <span class="shorthand">: ${linkItem.shorthand}</span>
+        <span class="shorthand">${linkItem.shorthand}</span>
         <a href="${linkItem.url}" target="_blank">${linkItem.url.substring(
     0,
     28
