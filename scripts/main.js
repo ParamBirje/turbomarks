@@ -57,7 +57,7 @@ form.addEventListener("submit", async (event) => {
 
 /*
 
-  -------------------- Helper functions ----------------------
+  Helper functions ----------------------
 
 */
 
@@ -93,9 +93,9 @@ function generateLinkItem(linkItem) {
       <div class="link-item-data">
         <span class="shorthand">${linkItem.shorthand}</span>
         <a href="${linkItem.url}" target="_blank">${linkItem.url.substring(
-    0,
-    28
-  )}...</a>
+          0,
+          28,
+        )}...</a>
       </div>
       <button data-shorthand="${
         linkItem.shorthand
@@ -128,7 +128,7 @@ async function intializeDeleteButtons() {
       }
 
       existingData = existingData.filter(
-        (item) => item.shorthand !== shorthand
+        (item) => item.shorthand !== shorthand,
       );
 
       await chrome.storage.local.set({
