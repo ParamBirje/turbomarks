@@ -11,15 +11,10 @@ chrome.omnibox.onInputChanged.addListener(async (text, suggest) => {
 
   let suggestions = [];
 
-  // Loop to iterate over the turbomarksData list
-  // and find the shorthand that starts with the input text
   for (let i of turbomarksData) {
     let shorthand = i.shorthand;
     let url = i.url;
 
-    // Condition:
-    // If the title starts with the input text
-    // provide the suggestion
     if (shorthand.startsWith(text) && text.length > 0) {
       suggestions.push({
         content: shorthand,
@@ -39,8 +34,6 @@ chrome.omnibox.onInputEntered.addListener((text) => {
     }
   });
 
-  // Assuming the updated data is already present in turbomarksData
-  // that is fetched by the onInputChanged listener
   for (let i of turbomarksData) {
     if (i.shorthand === text) {
       chrome.tabs.update({ url: i.url });

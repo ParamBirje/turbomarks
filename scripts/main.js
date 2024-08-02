@@ -27,12 +27,10 @@ form.addEventListener("submit", async (event) => {
   // Condition:
   // If any form field is empty, return
   if (!data.shorthand || !data.url) {
-    // show error message
+    // TODO: show error message
     return;
   }
 
-  // append the data to the list in local storage
-  // if the list is not present, create a new list
   let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
   let existingData = [];
 
@@ -48,10 +46,8 @@ form.addEventListener("submit", async (event) => {
     [LOCAL_STORAGE_KEY]: JSON.stringify(existingData),
   });
 
-  // re-render the links-list
   await triggerRenderLinks();
 
-  // reset the form
   form.reset();
 });
 
@@ -61,19 +57,17 @@ form.addEventListener("submit", async (event) => {
 
 */
 
-// Helper function to re-render the links-list
+// Re-render the links-list
 async function triggerRenderLinks() {
   await renderLinksListItems();
   await intializeDeleteButtons();
 }
 
-// Helper function to render the links-list items
+// Render the links-list items
 async function renderLinksListItems() {
   let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
   let existingData = [];
 
-  // Condition:
-  // Checking if the data is an empty object
   if (resultData[LOCAL_STORAGE_KEY]) {
     existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
   }
@@ -86,7 +80,7 @@ async function renderLinksListItems() {
   });
 }
 
-// Helper function to generate link-item HTML
+// Generate and return a link-item HTML
 function generateLinkItem(linkItem) {
   return `
     <div class="link-item">
@@ -104,13 +98,12 @@ function generateLinkItem(linkItem) {
   `;
 }
 
-// Helper function for deleting a link-item from the list
+// Deleting a link-item from the list
 // and from chrome.storage.local
 async function intializeDeleteButtons() {
   let deleteButtons = document.querySelectorAll(".delete-button");
 
   deleteButtons.forEach((button) => {
-    // return if the button already has the click event listener
     if (button.getAttribute("data-click-event")) {
       return;
     }
@@ -121,8 +114,6 @@ async function intializeDeleteButtons() {
       let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
       let existingData = [];
 
-      // Condition:
-      // Checking if the data is an empty object
       if (resultData[LOCAL_STORAGE_KEY]) {
         existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
       }
