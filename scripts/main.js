@@ -1,8 +1,8 @@
 const LOCAL_STORAGE_KEY = "turbomarks-data";
 
 // Description:
-// Populating links-list with saved links
-// from chrome.storage.local
+// Populating links-list UI with saved links
+// from chrome.storage
 let linksContainer = document.querySelector("#links-list");
 
 window.addEventListener("load", async () => {
@@ -32,30 +32,27 @@ form.addEventListener("submit", async (event) => {
   }
 
   let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
-  let existingData = [];
+  let existingData = {};
 
-  // Condition:
-  // Checking if the data is an empty object
   if (resultData[LOCAL_STORAGE_KEY]) {
     existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
   }
 
-  existingData.push(data);
+  existingData[data.shorthand] = data.url;
 
   await chrome.storage.local.set({
     [LOCAL_STORAGE_KEY]: JSON.stringify(existingData),
   });
 
   await triggerRenderLinks();
-
   form.reset();
 });
 
 /*
-
-  Helper functions ----------------------
-
-*/
+ *
+ * Helper Functions
+ *
+ */
 
 // Re-render the links-list
 async function triggerRenderLinks() {
@@ -66,16 +63,17 @@ async function triggerRenderLinks() {
 // Render the links-list items
 async function renderLinksListItems() {
   let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
-  let existingData = [];
+  let existingData = {};
 
   if (resultData[LOCAL_STORAGE_KEY]) {
     existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
   }
 
   // flushing the existing links
+  // HACK: Dangerous.
   linksContainer.innerHTML = "";
-  // Dangerous.
-  existingData.forEach((item) => {
+  Object.entries(existingData).forEach(([shorthand, url]) => {
+    let item = { shorthand, url };
     linksContainer.innerHTML += generateLinkItem(item);
   });
 }
@@ -98,8 +96,8 @@ function generateLinkItem(linkItem) {
   `;
 }
 
-// Deleting a link-item from the list
-// and from chrome.storage.local
+// Deleting a link-item from the UI list
+// and from chrome.storage
 async function intializeDeleteButtons() {
   let deleteButtons = document.querySelectorAll(".delete-button");
 
@@ -112,16 +110,13 @@ async function intializeDeleteButtons() {
       let shorthand = event.target.getAttribute("data-shorthand");
 
       let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
-      let existingData = [];
+      let existingData = {};
 
       if (resultData[LOCAL_STORAGE_KEY]) {
         existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
       }
 
-      existingData = existingData.filter(
-        (item) => item.shorthand !== shorthand,
-      );
-
+      delete existingData[shorthand];
       await chrome.storage.local.set({
         [LOCAL_STORAGE_KEY]: JSON.stringify(existingData),
       });

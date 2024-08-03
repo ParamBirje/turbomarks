@@ -1,5 +1,5 @@
 const LOCAL_STORAGE_KEY = "turbomarks-data";
-let turbomarksData = [];
+let turbomarksData = {};
 
 // As the input changes, provide suggestions
 chrome.omnibox.onInputChanged.addListener(async (text, suggest) => {
@@ -11,10 +11,7 @@ chrome.omnibox.onInputChanged.addListener(async (text, suggest) => {
 
   let suggestions = [];
 
-  for (let i of turbomarksData) {
-    let shorthand = i.shorthand;
-    let url = i.url;
-
+  for (let [shorthand, url] of Object.entries(turbomarksData)) {
     if (shorthand.startsWith(text) && text.length > 0) {
       suggestions.push({
         content: shorthand,
@@ -34,10 +31,8 @@ chrome.omnibox.onInputEntered.addListener((text) => {
     }
   });
 
-  for (let i of turbomarksData) {
-    if (i.shorthand === text) {
-      chrome.tabs.update({ url: i.url });
-      return;
-    }
+  if (text in turbomarksData) {
+    let newURL = turbomarksData[text];
+    chrome.tabs.update({ url: newURL });
   }
 });
