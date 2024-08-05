@@ -13,3 +13,5 @@ Now I can just choose a shorthand (eg. `ats`) for the url I want to access (eg. 
 - Type my shorthand and enter!
 
 ## Usage
+
+![turbomarks-demo-2](https://github.com/user-attachments/assets/a6318819-9cff-4c99-bca5-e0419246530a)
