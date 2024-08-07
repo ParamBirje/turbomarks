@@ -7,13 +7,14 @@
     "default_icon": "icon.png"
   },
   "background": {
-    "service_worker": "scripts/background.js"
+    "service_worker": "scripts/background.js",
+    "scripts": ["scripts/background.js"]
   },
   "icons": {
     "128": "icon.png"
   },
   "permissions": ["storage"],
   "omnibox": {
-    "keyword": ":"
+    "keyword": ";"
   }
 }
