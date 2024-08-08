@@ -69,18 +69,23 @@ async function renderLinksListItems() {
     existingData = JSON.parse(resultData[LOCAL_STORAGE_KEY]);
   }
 
-  // flushing the existing links
-  // HACK: Dangerous.
-  linksContainer.innerHTML = "";
+  // Clear existing content safely
+  while (linksContainer.firstChild) {
+    linksContainer.removeChild(linksContainer.firstChild);
+  }
+
+  // Create and append new link items
   Object.entries(existingData).forEach(([shorthand, url]) => {
     let item = { shorthand, url };
-    linksContainer.innerHTML += generateLinkItem(item);
+    linksContainer.appendChild(generateLinkItem(item));
   });
 }
 
 // Generate and return a link-item HTML
 function generateLinkItem(linkItem) {
-  return `
+  /*
+   * HTML Structure:
+   
     <div class="link-item">
       <div class="link-item-data">
         <span class="shorthand">${linkItem.shorthand}</span>
@@ -93,7 +98,41 @@ function generateLinkItem(linkItem) {
         linkItem.shorthand
       }" class="delete-button">Delete</button>
     </div>
-  `;
+  */
+
+  const linkItemDiv = document.createElement("div");
+  linkItemDiv.className = "link-item";
+
+  const linkItemDataDiv = document.createElement("div");
+  linkItemDataDiv.className = "link-item-data";
+
+  const shorthandSpan = document.createElement("span");
+  shorthandSpan.className = "shorthand";
+  shorthandSpan.textContent = linkItem.shorthand;
+
+  const link = document.createElement("a");
+  link.href = linkItem.url;
+  link.target = "_blank";
+  link.textContent =
+    linkItem.url.length > 28
+      ? `${linkItem.url.substring(0, 28)}...`
+      : linkItem.url;
+
+  // Append shorthand and link to link-item-data div
+  linkItemDataDiv.appendChild(shorthandSpan);
+  linkItemDataDiv.appendChild(link);
+
+  // Create and set the delete button
+  const deleteButton = document.createElement("button");
+  deleteButton.className = "delete-button";
+  deleteButton.dataset.shorthand = linkItem.shorthand;
+  deleteButton.textContent = "Delete";
+
+  // Append link-item-data and delete button to link-item div
+  linkItemDiv.appendChild(linkItemDataDiv);
+  linkItemDiv.appendChild(deleteButton);
+
+  return linkItemDiv;
 }
 
 // Deleting a link-item from the UI list
