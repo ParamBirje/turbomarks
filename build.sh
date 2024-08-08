@@ -6,7 +6,6 @@ if [ $# -ne 1 ]; then
   exit 1
 fi
 
-# Get the argument
 BROWSER_TYPE=$1
 
 # Validate the argument
@@ -21,10 +20,8 @@ BROWSER_DIR="$DIST_DIR/$BROWSER_TYPE"
 CHROME_MANIFEST="chrome-manifest.json"
 FIREFOX_MANIFEST="firefox-manifest.json"
 
-# Create build directories
 mkdir -p "$BROWSER_DIR"
 
-# Define the manifest file based on the browser type
 if [ "$BROWSER_TYPE" = "chrome" ]; then
   MANIFEST_FILE="$CHROME_MANIFEST"
 else
@@ -38,8 +35,6 @@ EXCLUDE_PATTERN=$(echo "$EXCLUDE_FILES" | sed 's/ / --exclude=/g' | sed 's/^/--e
 # Copy files excluding specified ones
 rsync -av $EXCLUDE_PATTERN --exclude='dist/' --exclude='*.git*' . "$BROWSER_DIR/"
 
-# Rename the manifest file
 cp "$MANIFEST_FILE" "$BROWSER_DIR/manifest.json"
 
 echo "Build completed for $BROWSER_TYPE."
-
