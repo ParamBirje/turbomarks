@@ -14,4 +14,7 @@ Now I can just choose a shorthand (eg. `ats`) for the url I want to access (eg. 
 
 ## Usage
 
+- Press the key `;` in the searchbar and press space to activate Turbomarks.
+- Now enter the shorthand you had set for a URL you want to access.
+
 ![turbomarks-demo-2](https://github.com/user-attachments/assets/a6318819-9cff-4c99-bca5-e0419246530a)
