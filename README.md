@@ -1,4 +1,4 @@
-![turbomarks-logo](https://github.com/user-attachments/assets/4c820848-4b93-4aba-be37-8e1f758f95c2)
+![turbomarks-logo-cropped](https://github.com/user-attachments/assets/21c38cab-d4fc-4ac1-8f59-7282934eb850)
 
 # Turbomarks
 
