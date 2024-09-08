@@ -2,7 +2,7 @@ const LOCAL_STORAGE_KEY = "turbomarks-data";
 
 // Description:
 // Populating links-list UI with saved links
-// from chrome.storage
+// from browser.storage
 let linksContainer = document.querySelector("#links-list");
 
 window.addEventListener("load", async () => {
@@ -31,7 +31,7 @@ form.addEventListener("submit", async (event) => {
     return;
   }
 
-  let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
+  let resultData = await browser.storage.local.get(LOCAL_STORAGE_KEY);
   let existingData = {};
 
   if (resultData[LOCAL_STORAGE_KEY]) {
@@ -40,7 +40,7 @@ form.addEventListener("submit", async (event) => {
 
   existingData[data.shorthand] = data.url;
 
-  await chrome.storage.local.set({
+  await browser.storage.local.set({
     [LOCAL_STORAGE_KEY]: JSON.stringify(existingData),
   });
 
@@ -62,7 +62,7 @@ async function triggerRenderLinks() {
 
 // Render the links-list items
 async function renderLinksListItems() {
-  let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
+  let resultData = await browser.storage.local.get(LOCAL_STORAGE_KEY);
   let existingData = {};
 
   if (resultData[LOCAL_STORAGE_KEY]) {
@@ -136,7 +136,7 @@ function generateLinkItem(linkItem) {
 }
 
 // Deleting a link-item from the UI list
-// and from chrome.storage
+// and from browser.storage
 async function intializeDeleteButtons() {
   let deleteButtons = document.querySelectorAll(".delete-button");
 
@@ -148,7 +148,7 @@ async function intializeDeleteButtons() {
     button.addEventListener("click", async (event) => {
       let shorthand = event.target.getAttribute("data-shorthand");
 
-      let resultData = await chrome.storage.local.get(LOCAL_STORAGE_KEY);
+      let resultData = await browser.storage.local.get(LOCAL_STORAGE_KEY);
       let existingData = {};
 
       if (resultData[LOCAL_STORAGE_KEY]) {
@@ -156,7 +156,7 @@ async function intializeDeleteButtons() {
       }
 
       delete existingData[shorthand];
-      await chrome.storage.local.set({
+      await browser.storage.local.set({
         [LOCAL_STORAGE_KEY]: JSON.stringify(existingData),
       });
 

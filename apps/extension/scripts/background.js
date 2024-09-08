@@ -2,8 +2,8 @@ const LOCAL_STORAGE_KEY = "turbomarks-data";
 let turbomarksData = {};
 
 // As the input changes, provide suggestions
-chrome.omnibox.onInputChanged.addListener(async (text, suggest) => {
-  chrome.storage.local.get(LOCAL_STORAGE_KEY).then((data) => {
+browser.omnibox.onInputChanged.addListener((text, suggest) => {
+  browser.storage.local.get(LOCAL_STORAGE_KEY).then((data) => {
     if (data[LOCAL_STORAGE_KEY]) {
       turbomarksData = JSON.parse(data[LOCAL_STORAGE_KEY]);
     }
@@ -24,8 +24,8 @@ chrome.omnibox.onInputChanged.addListener(async (text, suggest) => {
 });
 
 // On pressing enter, open the matched URL
-chrome.omnibox.onInputEntered.addListener((text) => {
-  chrome.storage.local.get(LOCAL_STORAGE_KEY).then((data) => {
+browser.omnibox.onInputEntered.addListener((text) => {
+  browser.storage.local.get(LOCAL_STORAGE_KEY).then((data) => {
     if (data[LOCAL_STORAGE_KEY]) {
       turbomarksData = JSON.parse(data[LOCAL_STORAGE_KEY]);
     }
@@ -33,6 +33,6 @@ chrome.omnibox.onInputEntered.addListener((text) => {
 
   if (text in turbomarksData) {
     let newURL = turbomarksData[text];
-    chrome.tabs.update({ url: newURL });
+    browser.tabs.update({ url: newURL });
   }
 });
