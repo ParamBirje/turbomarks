@@ -29,19 +29,19 @@ export default function Home() {
         <div className="flex gap-5 items-center mt-6">
           <button className="relative inline-flex h-12 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-7 py-1 text-lg font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-background px-8 py-1 text-lg font-medium text-white backdrop-blur-3xl">
               <ChromeIcon className="mr-3" /> Add to Chrome
             </span>
           </button>
 
           <button className="relative inline-flex h-12 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
             <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-7 py-1 text-lg font-medium text-white backdrop-blur-3xl">
+            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-background px-8 py-1 text-lg font-medium text-white backdrop-blur-3xl">
               <FirefoxIcon className="mr-3" /> Add to Firefox
             </span>
           </button>
 
-          <button className="px-8 py-4 text-white flex rounded-md tracking-[.5px] hover:bg-muted/[0.8] hover:shadow-lg">
+          <button className="px-9 py-3 text-white text-lg flex items-center rounded-md tracking-[.5px] hover:bg-muted/[0.8] hover:shadow-lg">
             <GithubIcon className="mr-3 h-5 w-5" /> Github
           </button>
         </div>
