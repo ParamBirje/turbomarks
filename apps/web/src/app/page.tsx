@@ -1,7 +1,7 @@
 import DotPattern from "@/components/magicui/dot-pattern";
 import FirefoxIcon from "@/lib/icons/firefox";
 import { cn } from "@/lib/utils";
-import { ChromeIcon, Link } from "lucide-react";
+import { ChromeIcon, GithubIcon, Link } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import tutorial from "@/lib/media/tutorial.gif";
 import { BorderBeam } from "@/components/magicui/border-beam";
@@ -39,6 +39,10 @@ export default function Home() {
             <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-slate-950 px-7 py-1 text-lg font-medium text-white backdrop-blur-3xl">
               <FirefoxIcon className="mr-3" /> Add to Firefox
             </span>
+          </button>
+
+          <button className="px-8 py-4 text-white flex rounded-md tracking-[.5px] hover:bg-muted/[0.8] hover:shadow-lg">
+            <GithubIcon className="mr-3 h-5 w-5" /> Github
           </button>
         </div>
 
