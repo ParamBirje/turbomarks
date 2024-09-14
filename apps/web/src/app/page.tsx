@@ -1,13 +1,13 @@
 import DotPattern from "@/components/magicui/dot-pattern";
 import FirefoxIcon from "@/lib/icons/firefox";
 import { cn } from "@/lib/utils";
-import { ChromeIcon, GithubIcon, Link } from "lucide-react";
+import { ChromeIcon, GithubIcon } from "lucide-react";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import tutorial from "@/lib/media/tutorial.gif";
 import { BorderBeam } from "@/components/magicui/border-beam";
 import DATA from "@/lib/config";
 import { DarkExtensionSteps } from "@/components/dark-extension-steps";
 import { DarkModeMinimalFooter } from "@/components/dark-mode-minimal-footer";
+import Link from "next/link";
 
 export default function Home() {
   return (
@@ -31,32 +31,40 @@ export default function Home() {
         </div>
 
         <div className="flex flex-col gap-5 items-center mt-6 md:flex-row">
-          <button className="relative w-full md:w-fit inline-flex h-12 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-background px-8 py-1 text-lg font-medium text-white backdrop-blur-3xl">
-              <ChromeIcon className="mr-3" /> Add to Chrome
-            </span>
-          </button>
+          <Link href={DATA.links.chrome}>
+            <button className="relative w-full md:w-fit inline-flex h-12 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+              <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-background px-8 py-1 text-lg font-medium text-white backdrop-blur-3xl">
+                <ChromeIcon className="mr-3" /> Add to Chrome
+              </span>
+            </button>
+          </Link>
 
-          <button className="relative w-full md:w-fit inline-flex h-12 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
-            <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
-            <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-background px-8 py-1 text-lg font-medium text-white backdrop-blur-3xl">
-              <FirefoxIcon className="mr-3" /> Add to Firefox
-            </span>
-          </button>
+          <Link href={DATA.links.firefox}>
+            <button className="relative w-full md:w-fit inline-flex h-12 overflow-hidden rounded-sm p-[1px] focus:outline-none focus:ring-2 focus:ring-slate-400 focus:ring-offset-2 focus:ring-offset-slate-50">
+              <span className="absolute inset-[-1000%] animate-[spin_2s_linear_infinite] bg-[conic-gradient(from_90deg_at_50%_50%,#E2CBFF_0%,#393BB2_50%,#E2CBFF_100%)]" />
+              <span className="inline-flex h-full w-full cursor-pointer items-center justify-center rounded-sm bg-background px-8 py-1 text-lg font-medium text-white backdrop-blur-3xl">
+                <FirefoxIcon className="mr-3" /> Add to Firefox
+              </span>
+            </button>
+          </Link>
 
-          <button className="px-9 py-3 w-full md:w-fit text-white text-lg flex justify-center items-center rounded-md tracking-[.5px] hover:bg-muted/[0.8] duration-100 hover:shadow-lg">
-            <GithubIcon className="mr-3 h-5 w-5" /> Github
-          </button>
+          <Link href={DATA.links.github}>
+            <button className="px-9 py-3 w-full md:w-fit text-white text-lg flex justify-center items-center rounded-md tracking-[.5px] hover:bg-muted/[0.8] duration-100 hover:shadow-lg">
+              <GithubIcon className="mr-3 h-5 w-5" /> Github
+            </button>
+          </Link>
         </div>
 
         <AspectRatio
-          ratio={16 / 6.4}
+          ratio={16 / 9}
           className="bg-muted mt-14 rounded-lg h-[20vh] md:h-auto"
         >
-          <img
-            src={tutorial.src}
-            alt="Tutorial"
+          <video
+            loop
+            autoPlay
+            muted
+            src="https://github.com/user-attachments/assets/b6b052c0-cd67-4a86-b457-901ef9268217"
             className="h-full w-full rounded-md object-cover"
           />
 

@@ -13,7 +13,7 @@ export function DarkModeMinimalFooter() {
             © {currentYear} Turbomarks. MIT License.
           </div>
           <div className="text-xl text-gray-400">
-            Built with love by{" "}
+            Built with 💖 by{" "}
             <Link
               href="https://parameater.co"
               className="text-blue-400 hover:text-blue-300 transition-colors"

@@ -5,6 +5,7 @@ const DATA = {
     chrome:
       "https://chromewebstore.google.com/detail/turbomarks/dbnfbnfnobnjfldjgmhfkhgeoepmbjkg",
     firefox: "https://addons.mozilla.org/en-US/firefox/addon/turbomarks/",
+    github: "https://github.com/parambirje/turbomarks",
   },
 };
 
