@@ -15,16 +15,14 @@ export function DarkExtensionSteps() {
   const steps = [
     {
       title: "Step 1: Store",
-      description: "Add the extension to your browser",
-      content:
-        "Visit the Chrome Web Store and click 'Add to Chrome' to install our extension.",
+      description:
+        "Add the extension to your browser, pick a shorthand for URL that you frequently access and store it.",
       image: step1,
     },
     {
       title: "Step 2: TURBOMODE",
-      description: "Enjoy the benefits",
-      content:
-        "Start browsing and see how our extension enhances your online experience!",
+      description:
+        "Open a tab (ctrl+t), enter `; <shorthand>` in the URL bar to quickly access the link assigned to it.",
       image: step2,
     },
   ];
@@ -57,7 +55,6 @@ export function DarkExtensionSteps() {
                     className="h-[280px] w-full aspect-video object-cover"
                   />
                 </div>
-                <p className="text-gray-300 text-xl">{step.content}</p>
               </CardContent>
             </Card>
           ))}
