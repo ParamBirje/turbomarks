@@ -7,11 +7,13 @@ import { BorderBeam } from "@/components/magicui/border-beam";
 import DATA from "@/lib/config";
 import { DarkExtensionSteps } from "@/components/dark-extension-steps";
 import { DarkModeMinimalFooter } from "@/components/dark-mode-minimal-footer";
+import CTASection from "@/components/cta";
 import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Home() {
   return (
-    <main className="max-w-6xl mx-auto my-10 px-4">
+    <main className="max-w-6xl mx-auto my-10 px-4 scroll-smooth">
       <section id="hero">
         <DotPattern
           className={cn(
@@ -50,9 +52,10 @@ export default function Home() {
           </Link>
 
           <Link href={DATA.links.github}>
-            <button className="px-9 py-3 w-full md:w-fit text-white text-lg flex justify-center items-center rounded-md tracking-[.5px] hover:bg-muted/[0.8] duration-100 hover:shadow-lg">
-              <GithubIcon className="mr-3 h-5 w-5" /> Github
-            </button>
+            <Button variant="outline" className="text-lg py-6 px-5">
+              <GithubIcon className="mr-2" />
+              Github
+            </Button>
           </Link>
         </div>
 
@@ -76,6 +79,11 @@ export default function Home() {
 
       {/* spacer */}
       <div className="h-10 w-full" />
+
+      <CTASection />
+
+      {/* spacer */}
+      <div className="h-24 w-full" />
 
       <DarkModeMinimalFooter />
     </main>
