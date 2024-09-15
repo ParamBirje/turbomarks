@@ -12,14 +12,14 @@ Now I can just choose a shorthand (eg. `ats`) for the url I want to access (eg. 
 - I press (`t` or `ctrl+t`) to open a new tab
 - Type my shorthand and enter!
 
+<video loop="" autoplay="" muted="" src="https://github.com/user-attachments/assets/b6b052c0-cd67-4a86-b457-901ef9268217"></video>
+
 ## Usage
 
 ### Accessing
 
 - Press the key `;` in the searchbar and press space to activate Turbomarks.
 - Now enter the shorthand you had set for a URL you want to access.
-
-![turbomarks-demo-2](https://github.com/user-attachments/assets/a6318819-9cff-4c99-bca5-e0419246530a)
 
 ### Creating
 
