@@ -15,7 +15,7 @@ export function DarkModeMinimalFooter() {
           <div className="text-xl text-gray-400">
             Built with 💖 by{" "}
             <Link
-              href="https://parameater.co"
+              href="https://parambirje.com"
               className="text-blue-400 hover:text-blue-300 transition-colors"
               target="_blank"
               rel="noopener noreferrer"
